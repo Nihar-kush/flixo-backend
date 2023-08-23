@@ -5,10 +5,17 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 
+const bodyParser = require('body-parser')
+const app = express()
+const port = 5000
+
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Listen on port 5000
+app.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`))
+
 var moviesRouter = require("./routes/movies");
 var usersRouter = require("./routes/users");
-
-var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
